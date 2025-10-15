@@ -124,6 +124,9 @@ private:
 
             case state::BOOTING:
                 batteryLevel -= 1;
+
+                currentState = state::ON;
+                cout << "Drone is ON";
                 break;
 
             case state::DAMAGED:
@@ -195,7 +198,7 @@ public:
     }
     
     void menu() {
-        cout << "CONTROL PANEL" << endl;
+        cout << "\nCONTROL PANEL" << endl;
         cout << "1. Turn ON (Boot up)" << endl;
         cout << "2. Calibrate" << endl;
         cout << "3. Take Off" << endl;
