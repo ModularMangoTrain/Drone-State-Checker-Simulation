@@ -28,13 +28,13 @@ private:
             case state::CALIBRATING: return "calibrating brah";
             case state::TAKING_OFF: return "will try not to go into the stratosphere (taking off)";
             case state::HOVERING: return "HOVERING";
-            case state::FLYING: return "midhunmobile still intact";
-            case state::BLUETOOTH_CHECKER: return "idk if i can even do this (pinging nearby people)";
+            case state::FLYING: return "flying";
+            case state::BLUETOOTH_CHECKER: return "pinging nearby people";
             case state::THERMAL_SCANNER: return "SCANNING THERMAL";
-            case state::DAMAGED: return "im broken bro";
-            case state::LANDING: return "landing brah gimme some fucking time";
-            case state::ERROR: return "what in the world are you trying to get me to do";
-            case state::SHUTTING_DOWN: return "bye bye brah (shutting down)";
+            case state::DAMAGED: return "im broken";
+            case state::LANDING: return "landing";
+            case state::ERROR: return "returning";
+            case state::SHUTTING_DOWN: return "bye bye(shutting down)";
             default: return "idk you actually broke the code somehow";
 
         }
@@ -162,10 +162,10 @@ public:
             cout << "Battery low" << endl;
         }
         if (!gpsSignal && (currentState == state::FLYING || currentState == state::HOVERING)) {
-            cout << "MIDHUN DONT TELL BAHAREH WE CAN GO THAT HIGH/GPS signal lost" << endl;
+            cout << "WE CAN GO THAT HIGH/GPS signal lost" << endl;
         }
         if (altitude > 100 && currentState == state::FLYING) {
-            cout << "Midun height moment (max height exceeded)" << endl;
+            cout << "height maxxed (max height exceeded)" << endl;
         }
 
     }
@@ -221,47 +221,47 @@ public:
 };
 
 int main(){
-    droneStateChecker MIDHUNMOBILE;
+    droneStateChecker drone;
 
     int choice;
 
     while (true){
-    MIDHUNMOBILE.menu();
+    drone.menu();
     cout << "pick an action to do brotato: ";
     cin >> choice;
     switch (choice) {
             case 1:
-                MIDHUNMOBILE.changeState(droneStateChecker::state::BOOTING);
+                drone.changeState(droneStateChecker::state::BOOTING);
                 break;
             case 2:
-                MIDHUNMOBILE.changeState(droneStateChecker::state::CALIBRATING);
+                drone.changeState(droneStateChecker::state::CALIBRATING);
                 break;
             case 3:
-                MIDHUNMOBILE.changeState(droneStateChecker::state::TAKING_OFF);
+                drone.changeState(droneStateChecker::state::TAKING_OFF);
                 break;
             case 4:
-                MIDHUNMOBILE.changeState(droneStateChecker::state::FLYING);
+                drone.changeState(droneStateChecker::state::FLYING);
                 break;
             case 5:
-                MIDHUNMOBILE.changeState(droneStateChecker::state::HOVERING);
+                drone.changeState(droneStateChecker::state::HOVERING);
                 break;
             case 6:
-                MIDHUNMOBILE.changeState(droneStateChecker::state::THERMAL_SCANNER);
+                drone.changeState(droneStateChecker::state::THERMAL_SCANNER);
                 break;
             case 7:
-                MIDHUNMOBILE.changeState(droneStateChecker::state::BLUETOOTH_CHECKER);
+                drone.changeState(droneStateChecker::state::BLUETOOTH_CHECKER);
                 break;
             case 8:
-                MIDHUNMOBILE.changeState(droneStateChecker::state::LANDING);
+                drone.changeState(droneStateChecker::state::LANDING);
                 break;
             case 9:
-                MIDHUNMOBILE.emergencyShutdown();
+                drone.emergencyShutdown();
                 break;
             case 10:
-                MIDHUNMOBILE.checkState();
+                drone.checkState();
                 break;
             case 11:
-                MIDHUNMOBILE.changeState(droneStateChecker::state::DAMAGED);
+                drone.changeState(droneStateChecker::state::DAMAGED);
                 break;
             case 12:
                 cout << "drone off bro" << endl;
@@ -271,8 +271,9 @@ int main(){
                 break;
         }
 
-    MIDHUNMOBILE.checkState();
+    drone.checkState();
 
     }
     return 0;
 }
+
